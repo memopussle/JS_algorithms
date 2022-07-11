@@ -167,3 +167,16 @@ function countUniqueValues(arr) {
 console.log(countUniqueValues([1,2,2,3,4]))
 
 //if arr[i] !== arr[j] -> i++ (move up) & arr[i] = arr[j]
+
+
+// Sliding window
+// Involves creating a window which can either be an array or number from one position to another
+// /Depending on a certain condition, the window either increases or closes ( and a new window is created)
+
+//Example: write a function called maxSubarraySum which accepts an array of integers and a number called n.
+//The function should calculate the maximum sum of n consecutive elements in the array
+
+
+//maxSubarraySum([1,3,5,6], 2) //11
+//maxSubarraySum([1,2,5,2,8,1,5], 4) //17
+//maxSumbarraySum([4,2,1,6,2],4) //13

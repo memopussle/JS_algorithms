@@ -169,7 +169,7 @@ console.log(countUniqueValues([1,2,2,3,4]))
 //if arr[i] !== arr[j] -> i++ (move up) & arr[i] = arr[j]
 
 
-// Sliding window
+// III. Sliding window
 // Involves creating a window which can either be an array or number from one position to another
 // /Depending on a certain condition, the window either increases or closes ( and a new window is created)
 
@@ -180,3 +180,33 @@ console.log(countUniqueValues([1,2,2,3,4]))
 //maxSubarraySum([1,3,5,6], 2) //11
 //maxSubarraySum([1,2,5,2,8,1,5], 4) //17
 //maxSumbarraySum([4,2,1,6,2],4) //13
+function maxSubarraySum(arr, num) {
+  let maxSum = 0;
+  let tempSum = 0;
+  if (arr.length < num) return null; //if array is smaller than num
+  for (let i = 0; i < num; i++) {
+    maxSum += arr[i]; //sm the first n consecutive numbers
+  }
+  tempSum = maxSum;
+  for (let i = num; i < arr.length; i++) { //i=3
+
+    tempSum = tempSum - arr[i - num] + arr[i];
+    maxSum = Math.max(maxSum, tempSum);
+  }
+  return maxSum;
+}
+
+console.log(maxSubarraySum([1, 3, 5, 6], 2)) //11
+
+
+// IV. Divide and conquer
+//This pattern involves dividing a data set into smaller chunks and then repeating a process with a subset of data
+//This pattern can tremendously decrease time complexity
+
+//example: Given a sorted array of intergers, write a function called search,
+//that accepts a value and returns the index where value passed to the function
+//is located. If the values is not found, return -1
+
+//search([1,2,3,4,5,6],4) //3
+//search([1,2,3,4,5,6],6) //5
+//search([1,2,3,4,5,6], 11) //-1

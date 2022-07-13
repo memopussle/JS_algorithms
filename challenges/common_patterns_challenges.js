@@ -22,7 +22,8 @@
 
 //3. loop through the first parameter
 
-//4. loop through 2nd intergers to check if 2nd number has the same number & frequency
+//4. loop through 2nd intergers to check if 2nd number has the same number. if yes , lookup -1. ( to set all keys back to 0).
+//no same number, retun false 
 
 function sameFrequency(num1, num2) {
   const strNum1 = num1.toString(); // convert to string to get the length
@@ -55,3 +56,44 @@ function sameFrequency(num1, num2) {
 console.log(sameFrequency(182, 281));
 // 182, 281
 // 1: 0, 0: 1, 2: 0 -> true
+
+
+
+//Frequency Counter/ Multipler Pointers - are thereDuplicates
+//Implement a function called, areThereDuplicates which accepts a variable number of arguments, and checks whether there are any duplicates among
+//the arguments passed in. You can solve this using frequency pattern OR the multiple pointers pattern
+//areThereDuplicates(1,2,3) //false
+//areThereDuplicates(1,2,2, 5,5, 6) //true
+//areThereDuplicates('a','b', 'c') //true
+
+// multiple pointer:
+//     j
+//(1,2,3,5,5,6)
+//   i
+//loop through the array and j need to be < array length so loop stops at the last index
+//compare i to j. if i = j -> return true
+//if i !==j -> i++, j++
+//return false at the end when j = the last index.
+function areThereDuplicates(...arguments) {
+  let start = 0;
+  let next = 1;
+  while (next < arguments.length) {
+    if (arguments[start] === arguments[next]) {
+      return true;
+    }
+    start++;
+    next++;
+  }
+  return false;
+}
+
+console.log(areThereDuplicates(1, 2, 6));
+
+    function areThereDuplicates1() {
+      return new Set(arguments).size !== arguments.length;
+}
+    
+
+console.log(areThereDuplicates1(1, 2, 6, 6));
+//Set.prototype.size: return the number of (unique) elements in a Set object
+//ex: object1[1,2,3,3] -> console.log(new Set(object1).size) //->3 (3 unique numbers)

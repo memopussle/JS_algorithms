@@ -131,4 +131,8 @@ function averagePair(array, targetNumber) {
      return false;
 }
 
-console.log(averagePair([1,2,4,6,10,12], 4))
+console.log(averagePair([1, 2, 4, 6, 10, 12], 4))
+
+
+//RECURSIVE NUMBER
+// Is a method that call a function/ array again and again with condition when it ends

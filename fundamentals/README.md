@@ -9,5 +9,5 @@
 
 - Regardless of the exact number, the number of operations grows roughly **proportionally with n**
 
-![Big O notation trend](./img/Otrend.png)
+![Big O notation trend](../img/Otrend.png);
 

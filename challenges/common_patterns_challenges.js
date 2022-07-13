@@ -97,3 +97,38 @@ console.log(areThereDuplicates(1, 2, 6));
 console.log(areThereDuplicates1(1, 2, 6, 6));
 //Set.prototype.size: return the number of (unique) elements in a Set object
 //ex: object1[1,2,3,3] -> console.log(new Set(object1).size) //->3 (3 unique numbers)
+
+
+//3. Multiple pinters - average Pairs
+//write a function called averagePair. Given a sorted array of integers and a target average,
+//determine if there is a pair of values in the array where the average of the pair equals the target
+//average. There may be more than one pair that matches the average target
+// time:O(n), space: O(1)
+
+//SORTED array of intergers
+//pick i = 0; j = length-1 (last index)
+//use loop while. if (i+j)/2 > target number, j--. if (i+j)/2 < target number,i++
+
+function averagePair(array, targetNumber) {
+  let left = 0;
+  let right = array.length-1; //last index
+
+  if (array.length === 0) {
+    return false;
+  }
+  while (left < right) {
+    let average = (array[left] + array[right]) / 2
+
+    if (average === targetNumber) {
+      return true;
+    } else if (average > targetNumber) {
+      right--;
+    } else {
+      left++;
+    }
+ 
+  }
+     return false;
+}
+
+console.log(averagePair([1,2,4,6,10,12], 4))

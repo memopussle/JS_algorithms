@@ -133,6 +133,38 @@ function averagePair(array, targetNumber) {
 
 console.log(averagePair([1, 2, 4, 6, 10, 12], 4))
 
+//Sliding window
+//given an array of intergers and a number, write a function called maxSubarraySum, which finds
+//the maximum sum of a subarray with the length of the number passed to the function
+//Note that a subarray must consist of consecutive elements from the original array. In the firt example below, [100,200,300]
+//is a subarray of the original array, but [100,300] is not
 
-//RECURSIVE NUMBER
-// Is a method that call a function/ array again and again with condition when it ends
+//sliding window: first we have to sum the first subarray with the length of the number given
+
+//store it in maxSum variable for now
+
+//loop. new sum now will + the next index and - the first index
+//compare new sum with the previous sum. find max and return max
+
+function maxSubarraySum(array, targetNumber) {
+  let maxSum = 0;
+  let tempSum = 0;
+
+  if (array < targetNumber) return null;
+  for (let i = 0; i < targetNumber; i++) {
+    maxSum += array[i];
+   
+  }
+
+  for (let i = targetNumber; i < array.length; i++) {
+    //maxSum above:300 - 100 (first index) + 300 (current index)= 500
+    tempSum = maxSum - array[i - targetNumber] + array[i];
+     maxSum = Math.max(maxSum, tempSum);
+
+  }
+  
+  return maxSum;
+}
+
+console.log(maxSubarraySum([100,200,300,400,800], 2)); 
+

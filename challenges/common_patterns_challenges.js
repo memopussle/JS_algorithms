@@ -23,7 +23,7 @@
 //3. loop through the first parameter
 
 //4. loop through 2nd intergers to check if 2nd number has the same number. if yes , lookup -1. ( to set all keys back to 0).
-//no same number, retun false 
+//no same number, retun false
 
 function sameFrequency(num1, num2) {
   const strNum1 = num1.toString(); // convert to string to get the length
@@ -57,8 +57,6 @@ console.log(sameFrequency(182, 281));
 // 182, 281
 // 1: 0, 0: 1, 2: 0 -> true
 
-
-
 //Frequency Counter/ Multipler Pointers - are thereDuplicates
 //Implement a function called, areThereDuplicates which accepts a variable number of arguments, and checks whether there are any duplicates among
 //the arguments passed in. You can solve this using frequency pattern OR the multiple pointers pattern
@@ -89,15 +87,13 @@ function areThereDuplicates(...arguments) {
 
 console.log(areThereDuplicates(1, 2, 6));
 
-    function areThereDuplicates1() {
-      return new Set(arguments).size !== arguments.length;
+function areThereDuplicates1() {
+  return new Set(arguments).size !== arguments.length;
 }
-    
 
 console.log(areThereDuplicates1(1, 2, 6, 6));
 //Set.prototype.size: return the number of (unique) elements in a Set object
 //ex: object1[1,2,3,3] -> console.log(new Set(object1).size) //->3 (3 unique numbers)
-
 
 //3. Multiple pinters - average Pairs
 //write a function called averagePair. Given a sorted array of integers and a target average,
@@ -111,13 +107,13 @@ console.log(areThereDuplicates1(1, 2, 6, 6));
 
 function averagePair(array, targetNumber) {
   let left = 0;
-  let right = array.length-1; //last index
+  let right = array.length - 1; //last index
 
   if (array.length === 0) {
     return false;
   }
   while (left < right) {
-    let average = (array[left] + array[right]) / 2
+    let average = (array[left] + array[right]) / 2;
 
     if (average === targetNumber) {
       return true;
@@ -126,12 +122,11 @@ function averagePair(array, targetNumber) {
     } else {
       left++;
     }
- 
   }
-     return false;
+  return false;
 }
 
-console.log(averagePair([1, 2, 4, 6, 10, 12], 4))
+console.log(averagePair([1, 2, 4, 6, 10, 12], 4));
 
 //Sliding window
 //given an array of intergers and a number, write a function called maxSubarraySum, which finds
@@ -153,18 +148,45 @@ function maxSubarraySum(array, targetNumber) {
   if (array < targetNumber) return null;
   for (let i = 0; i < targetNumber; i++) {
     maxSum += array[i];
-   
   }
 
   for (let i = targetNumber; i < array.length; i++) {
     //maxSum above:300 - 100 (first index) + 300 (current index)= 500
     tempSum = maxSum - array[i - targetNumber] + array[i];
-     maxSum = Math.max(maxSum, tempSum);
-
+    maxSum = Math.max(maxSum, tempSum);
   }
-  
+
   return maxSum;
 }
 
-console.log(maxSubarraySum([100,200,300,400,800], 2)); 
+console.log(maxSubarraySum([100, 200, 300, 400, 800], 2));
 
+//sliding window: write a function called minSubArrayLen which accepts
+//2 parameters - an array of positive integers and a positive integers.
+//This function should return the minimal length of a contigious subarray
+//of which the sum is greater than or equal to the interger passed to the
+//function. If there isn't one, return 0 instead.
+
+//minSubArrayLen([1,2,3],4) //2
+//               i
+
+//=============RECURSION==============
+//write a function called power which accepts a base and an exponent. The function should return the power o the base to the exponent.
+//This function should mimic the functionality of Mathpow() - ignore negative bases and exponents.
+
+//Problem breakdown: if the number on the right is 0 -> x ^ 0 -> 1
+//the number of the left will * itself the number of time based on the number on the right. ex: (2,2) -> 2 * 2 * 2 , (2, 1) -> 2
+// firstly, whenever number on the left * itself, number on the right -1.
+//basecase: if number on the right = 0 -> return 1
+
+function power(base, exponent) {
+  if (exponent === 0) return 1;
+
+  return base * power(base, exponent - 1));
+}
+
+//ex: power(2,2)
+//2 * power(2, 1)
+//      2 * power(2, 0)
+//            1 
+// 2 * 2 * 1 = 4

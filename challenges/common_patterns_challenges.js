@@ -1,4 +1,4 @@
-// Freuqency counter - same Frequency
+//============================ Freuqency counter - same Frequency================================
 
 // Write a function called sameFrequency. Given two positive intergers,
 //find out if the two numbers have the same frequencyof digits. Your solution
@@ -95,7 +95,7 @@ console.log(areThereDuplicates1(1, 2, 6, 6));
 //Set.prototype.size: return the number of (unique) elements in a Set object
 //ex: object1[1,2,3,3] -> console.log(new Set(object1).size) //->3 (3 unique numbers)
 
-//3. Multiple pinters - average Pairs
+//======================== Multiple pinters - average Pairs========================
 //write a function called averagePair. Given a sorted array of integers and a target average,
 //determine if there is a pair of values in the array where the average of the pair equals the target
 //average. There may be more than one pair that matches the average target
@@ -128,7 +128,7 @@ function averagePair(array, targetNumber) {
 
 console.log(averagePair([1, 2, 4, 6, 10, 12], 4));
 
-//Sliding window
+//==================Sliding window=============================
 //given an array of intergers and a number, write a function called maxSubarraySum, which finds
 //the maximum sum of a subarray with the length of the number passed to the function
 //Note that a subarray must consist of consecutive elements from the original array. In the firt example below, [100,200,300]
@@ -167,8 +167,60 @@ console.log(maxSubarraySum([100, 200, 300, 400, 800], 2));
 //of which the sum is greater than or equal to the interger passed to the
 //function. If there isn't one, return 0 instead.
 
-//minSubArrayLen([1,2,3],4) //2
-//               i
+function minSubArrayLen(nums, sum) {
+  let total = 0;
+  let start = 0;
+  let end = 0;
+  let minLen = Infinity;
+
+  while (start < nums.length) {
+    // if current window doesn't add up to the given sum then
+    // move the window to right
+    if (total < sum && end < nums.length) {
+      total += nums[end];
+      end++;
+    }
+    // if current window adds up to at least the sum given then
+    // we can shrink the window
+    else if (total >= sum) {
+      minLen = Math.min(minLen, end - start);
+
+      total -= nums[start];
+      start++;
+    }
+    // current total less than required total but we reach the end, need this or else we'll be in an infinite loop
+    else {
+      break;
+    }
+  }
+
+  return minLen === Infinity ? 0 : minLen;
+}
+
+console.log(minSubArrayLen([1, 2, 3], 5)); //2
+console.log(minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 39)); //3 -> [1,16,22]
+
+//findLongestSubstring
+//write a function called findLongestSubstring, which accepts a STRING and returns the length of the longest SUBSTRING with all distinct characters
+//findLongestSubstring('thisishowwedoit') //6
+//break down: start = 0; end = 0; if start != end, end++;
+//create an object. push character as the key in there , value = number of those characters.
+//ideal: r: 1, i: 1, t:1, h:1,m:1, s:1 . if end = key of the object -> execute there. we can count value of the object -> number of character in the substrin
+
+function findLongestSubstring(string) {
+  console.log(string.length);
+  let start = 0;
+  let end = 0;
+  let obj = {};
+  for (let i = 0; i < string.length; i++) {
+    let number = string[i];
+    obj[number] = obj[number] += 1;
+  }
+  return obj;
+}
+console.log(findLongestSubstring("thisisawesome"));
+
+
 
 //=============RECURSION==============
 //write a function called power which accepts a base and an exponent. The function should return the power o the base to the exponent.
@@ -182,11 +234,72 @@ console.log(maxSubarraySum([100, 200, 300, 400, 800], 2));
 function power(base, exponent) {
   if (exponent === 0) return 1;
 
-  return base * power(base, exponent - 1));
+  return base * power(base, exponent - 1);
 }
 
 //ex: power(2,2)
 //2 * power(2, 1)
 //      2 * power(2, 0)
-//            1 
+//            1
 // 2 * 2 * 1 = 4
+
+//Factorial : Write a function factorial which accepts a number and returns the factorial of that number. A factorial is the product
+//of an interger and all the intergers below it, ex factorial four (4!) is equal to 24, because 4 * 3 * 2 * 1 = 24
+//factorial zaro(0!) is always 1
+//factorial(1) // 1
+//factorial(2) //2
+function factorial(number) {
+  if (number < 0) return 0; //if
+  if (number <= 1) return 1; //if
+  return number * factorial(number - 1);
+}
+
+console.log(factorial(4));
+// 4 * factorial(3)
+//         3 * factorial(2)
+//                2 * factorial(1)
+//                       1
+
+//product of Array
+//write a function called productOfArray which takes in an array of numbers and returns the product of them all
+//productOfArray([1,2,3]) //6
+//productOfArray([1,2,3,10]) //60
+
+//use recursion: base case: 1.
+function productOfArray(array) {
+  if (array.length === 0) {
+    return 1;
+  }
+
+  return array[0] * productOfArray(array.slice(1));
+}
+
+console.log(productOfArray([2, 3, 4,5]));
+// 2 * productOfArray(array.slice(1))
+//                3 * productOfArray(array.slice(1))
+//                           4 * productOfArray(array.slice(1))
+//                                    5 * productOfArray(array.slice(1))
+//                                           array = 0-> retur 1
+
+
+
+//=============LINEAR SEARCH==============
+//Write a function called linearSearch which accepts an array and a value, and returns the index at which the value exists. If the value
+//does not exist in the array, return -1
+//linearSearch([10,15,20,25,30],15) //1
+//linearSearch([9,8,7,6, 5],6)//3
+
+function linearSearch(array, value) {
+  //loop through array to find value in the array
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === value) {
+      return i;
+    } 
+
+    if (array.includes(value) === false) {
+      return -1;
+    }
+  }
+}
+
+console.log(linearSearch([1,2,3,4], 9))

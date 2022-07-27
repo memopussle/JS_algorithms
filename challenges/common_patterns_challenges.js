@@ -220,8 +220,6 @@ function findLongestSubstring(string) {
 }
 console.log(findLongestSubstring("thisisawesome"));
 
-
-
 //=============RECURSION==============
 //write a function called power which accepts a base and an exponent. The function should return the power o the base to the exponent.
 //This function should mimic the functionality of Mathpow() - ignore negative bases and exponents.
@@ -274,14 +272,32 @@ function productOfArray(array) {
   return array[0] * productOfArray(array.slice(1));
 }
 
-console.log(productOfArray([2, 3, 4,5]));
+console.log(productOfArray([2, 3, 4, 5]));
 // 2 * productOfArray(array.slice(1))
 //                3 * productOfArray(array.slice(1))
 //                           4 * productOfArray(array.slice(1))
 //                                    5 * productOfArray(array.slice(1))
 //                                           array = 0-> retur 1
 
+//Recursion problem
+//write a function called reverse which accepts a string and returns a new string in reverse
+//reverse('awesome'); emosewa
+function reverse(str) {
+  //base case
+  if (str.length <= 1) return str;
 
+  return reverse(str.slice(1)) + str[0];
+}
+
+console.log(reverse("isawesome"));
+// reverse(sawesome  + i)
+//             (awesome  +  s + i)
+//                      (wesome + a  +  s + i)
+//                               (esome + w + a +  s + i)
+//                                                (some + e + w + a +  s + i)
+//                                                            (ome + s + w + a +  s + i)
+//                                                                         me + o + s + w + a +  s + i
+//                                                                                  e + m + o + s + w + a +  s + i
 
 //=============LINEAR SEARCH==============
 //Write a function called linearSearch which accepts an array and a value, and returns the index at which the value exists. If the value
@@ -292,14 +308,60 @@ console.log(productOfArray([2, 3, 4,5]));
 function linearSearch(array, value) {
   //loop through array to find value in the array
   for (let i = 0; i < array.length; i++) {
-    if (array[i] === value) {
-      return i;
-    } 
-
-    if (array.includes(value) === false) {
-      return -1;
-    }
+    if (array[i] === value) return i;
   }
+  return -1;
 }
 
-console.log(linearSearch([1,2,3,4], 9))
+console.log(linearSearch([1, 2, 3, 4], 4));
+
+//==============Binary Search=========
+// write a function called binarySearch which accepts a SORTED array and a value and returns the index at which the value exists. Otherwise, return -1
+//binarySearch([1,2,3,4,5], 2) //1
+//binarySearch([1,2,3,4,5], 6) //-1
+
+function binarySearch(arr, elem) {
+  let start = 0;
+  let end = arr.length - 1;
+  let middle = Math.floor((start + end) / 2);
+  while (arr[middle] !== elem && start <= end) {
+    //if the value is not in array it will create
+    // SME = last index ; S+ 1 -> next index after last one. will stuck in an infinite loop
+    //end should be start <= end to end the loop
+
+    if (elem < arr[middle]) end = middle - 1;
+    else start = middle + 1;
+    middle = Math.floor((start + end) / 2); //recalculate the middle after move left or right point
+  }
+
+  return arr[middle] === elem ? middle : -1;
+}
+
+console.log(binarySearch([2, 5, 6, 9, 13, 15, 26, 28, 30], 15));
+//                        S        M                   E
+//                                    S        M        E
+//                                    S   M    E
+
+// isPalindrome : write a recursive function called isPalindrome which returns true if the string passed to it is a palindrome(reads the same forward
+// & backward). Otherwise it returns false
+// isPalindrome('awesome') // false
+// isPalindrome('foobar') // false
+// isPalindrome('tacocat') // true
+
+// reverse the array backwards and then compare it to original array
+//push the last index to the new array and then slice the original array
+//ex: e + slice(1).
+
+function isPalindrome(string) {
+  //base case
+  if (string.length === 1) return true;
+  //if (string.length === 2) return false;
+  if (string[0] === string.slice(-1)) return isPalindrome(string.slice(1, -1));
+
+  return false;
+}
+// check if string[0] === string.slice[-1] -> true. otherwise false
+//eliminate first and last character if above is true. start recursion
+//base case: string length === 1 return true
+
+console.log(isPalindrome("tacoicat"));

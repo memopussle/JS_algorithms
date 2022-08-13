@@ -365,3 +365,50 @@ function isPalindrome(string) {
 //base case: string length === 1 return true
 
 console.log(isPalindrome("tacoicat"));
+
+//someRecursive
+// /Write a recursive function called someRecursive which accepts an array and a callback.
+//The function returns true if a single value in the array returns true when passed to the callback.Otherwise it returns false.
+//const isOdd = val => val % 2 !== 0
+//someRecursive([1,2,3,4], isOdd) //true
+//someRecursive([4,6,8,9], isOdd) // true
+
+function someRecursive(array, callBack) {
+  if (array.length === 0) return false;
+  if (callBack(array[0]) === true) return true; //if callBack((array[0]) === true
+  return someRecursive(array.slice(1), callBack);
+}
+
+const isOdd = (value) => value % 2 !== 0;
+
+console.log(someRecursive([6,2,4], isOdd))
+
+//==========================Searching Algorithms================
+
+//find thid short characters inside long characters
+function naiveSearch(long, short) {
+  var count = 0;
+
+  for (var i = 0; i < short.length; i++) {
+    for (var j = 0; j < short.length; j++) {
+      console.log(short[i], long[i+j]);
+
+      //break loop when finding a match
+      if (short[j] !== long[i + j]) {
+        break;
+      }
+
+      if (j === short.length - 1) {
+        console.log("found 1");
+        count++;
+
+      }
+    }
+  }
+  return count;
+
+}
+
+naiveSearch("lorie loled", "lol");
+
+

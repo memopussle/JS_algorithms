@@ -59,3 +59,48 @@ function aVeryBigSum(arr) {
 console.log(
   aVeryBigSum([1000000001, 1000000002, 1000000003, 1000000004, 1000000005])
 );
+
+
+//square matrix: alculate the absolute difference between the sums of its diagonals.
+
+//For example, the square matrix arr is shown below: 
+// sample: [[1,2,3], 
+//         [4, 5, 6],
+//         [7, 8, 9]]
+
+function diagonalDifference(arr) {
+  let diagonal1 = 0;
+  let diagonal2 = 0;
+  const length = arr.length;
+
+  for (let i = 0; i < arr.length; i++) {
+    diagonal1 += arr[i][i]; // [1,2,3]
+    diagonal2 += arr[length - 1 - i][i] //[7,5,3]
+  }
+  return Math.abs(diagonal1 = diagonal2);
+ 
+}
+console.log(diagonalDifference([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+
+//another solution
+function diagonalDifference(arr) {
+  var n = arr.length; 
+   var d1 = 0;
+  var d2 = 0;
+  for (var i = 0; i < n; i++){
+    for (var j = 0; j < n; j++){
+      //if i ===j -> add the number to d1
+       if(i === j) {
+         d1 += arr[i][j];
+         
+         //n-1 = 2. i + j ===2 . 3 cases: i = 0, j=2; i=1, j =1; i = 2, j= 0-> sum those numbers 
+         } if(i + j === n - 1){
+            d2 += arr[i][j];
+      }
+    }
+  }
+  return Math.abs(d1 - d2);
+}
+
+
+

@@ -40,3 +40,22 @@ function compareTriplets(a, b) {
 }
 
 console.log(compareTriplets([1, 2, 4], [3, 2, 1]));
+
+
+
+// A very bigsum
+// /In this challenge, you are required to calculate and print the sum of the elements in an array, keeping in mind that some of those integers may be quite large.
+
+// example:[1000000001, 1000000002, 1000000003, 1000000004, 1000000005] -> result: 5000000015
+//for loop:
+function aVeryBigSum(arr) {
+  let totalSum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    totalSum += arr[i];
+  }
+  return totalSum;
+}
+
+console.log(
+  aVeryBigSum([1000000001, 1000000002, 1000000003, 1000000004, 1000000005])
+);

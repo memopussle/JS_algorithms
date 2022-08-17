@@ -23,7 +23,6 @@ console.log(simpleArraySum([1, 2, 3]));
 
 //get a for loop which is < 3. compare a[i] and b[i], if a[i] > b[i] -> Alice Score +1, if a[i] < b[i] ->Bob Score +1
 
-
 function compareTriplets(a, b) {
   let AliceScore = 0;
   let BobScore = 0;
@@ -33,15 +32,13 @@ function compareTriplets(a, b) {
       BobScore++;
     } else if (a[i] > b[i]) {
       AliceScore++;
-    } 
+    }
   }
 
   return [AliceScore, BobScore];
 }
 
 console.log(compareTriplets([1, 2, 4], [3, 2, 1]));
-
-
 
 // A very bigsum
 // /In this challenge, you are required to calculate and print the sum of the elements in an array, keeping in mind that some of those integers may be quite large.
@@ -60,11 +57,10 @@ console.log(
   aVeryBigSum([1000000001, 1000000002, 1000000003, 1000000004, 1000000005])
 );
 
-
 //square matrix: alculate the absolute difference between the sums of its diagonals.
 
-//For example, the square matrix arr is shown below: 
-// sample: [[1,2,3], 
+//For example, the square matrix arr is shown below:
+// sample: [[1,2,3],
 //         [4, 5, 6],
 //         [7, 8, 9]]
 
@@ -75,32 +71,70 @@ function diagonalDifference(arr) {
 
   for (let i = 0; i < arr.length; i++) {
     diagonal1 += arr[i][i]; // [1,2,3]
-    diagonal2 += arr[length - 1 - i][i] //[7,5,3]
+    diagonal2 += arr[length - 1 - i][i]; //[7,5,3]
   }
-  return Math.abs(diagonal1 = diagonal2);
- 
+  return Math.abs((diagonal1 = diagonal2));
 }
-console.log(diagonalDifference([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+console.log(
+  diagonalDifference([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ])
+);
 
 //another solution
 function diagonalDifference(arr) {
-  var n = arr.length; 
-   var d1 = 0;
+  var n = arr.length;
+  var d1 = 0;
   var d2 = 0;
-  for (var i = 0; i < n; i++){
-    for (var j = 0; j < n; j++){
+  for (var i = 0; i < n; i++) {
+    for (var j = 0; j < n; j++) {
       //if i ===j -> add the number to d1
-       if(i === j) {
-         d1 += arr[i][j];
-         
-         //n-1 = 2. i + j ===2 . 3 cases: i = 0, j=2; i=1, j =1; i = 2, j= 0-> sum those numbers 
-         } if(i + j === n - 1){
-            d2 += arr[i][j];
+      if (i === j) {
+        d1 += arr[i][j];
+
+        //n-1 = 2. i + j ===2 . 3 cases: i = 0, j=2; i=1, j =1; i = 2, j= 0-> sum those numbers
+      }
+      if (i + j === n - 1) {
+        d2 += arr[i][j];
       }
     }
   }
   return Math.abs(d1 - d2);
 }
 
+// plusMinus
 
+//Given an array of integers, calculate the ratios of its elements that are positive, negative, and zero.
+//Print the decimal value of each fraction on a new line with places after the decimal.
 
+//1: get the length of the array
+//loop through the array. caculate the number of positive, negative and zero
+//get that number / array length
+//print the results
+
+function plusMinus(arr) {
+  let positiveNumbers = 0;
+  let negativeNumbers = 0;
+  let zero = 0;
+  const arrLength = arr.length;
+  for (let i = 0; i < arrLength; i++) {
+    if (arr[i] > 0) {
+      positiveNumbers++;
+    } else if (arr[i] < 0) {
+      negativeNumbers++;
+    } else {
+      zero++;
+    }
+  }
+  const positiveRatio = (positiveNumbers / arrLength).toFixed(6);
+
+  const negativeRatio = (negativeNumbers / arrLength).toFixed(6);
+  const zeroRatio = (zero / arrLength).toFixed(6);
+  console.log(positiveRatio);
+  console.log(negativeRatio);
+   console.log(zeroRatio);
+}
+
+console.log(plusMinus([-1, -2, 0, 1, -3, 5]));

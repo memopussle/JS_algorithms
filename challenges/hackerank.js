@@ -134,7 +134,67 @@ function plusMinus(arr) {
   const zeroRatio = (zero / arrLength).toFixed(6);
   console.log(positiveRatio);
   console.log(negativeRatio);
-   console.log(zeroRatio);
+  console.log(zeroRatio);
 }
 
-console.log(plusMinus([-1, -2, 0, 1, -3, 5]));
+//staircase
+//This is a staircase of size
+
+//    #
+//   ##
+//  ###
+// ####
+
+//Its base and height are both equal to n. It is drawn using # symbols and spaces. The last line is not preceded by any spaces.
+// loop through it with the i <= n
+//ex: 4
+//n=1 -> 3 space, 1# -> (n-1)space + 1#
+//n=2 -> 2 space, 2# -> (n-2)space + (1+1)#
+//n=3 -> 1 space,3# -> (n-3) space + (2 + 1)#
+//n=4 -> 0 space, 4# -> (n-4) space + (3+ 1)#
+
+//nested loop: i = row, j= each index.
+// i = 0 -> j= 1 -> space
+//i = 0 -> j = 2 -> space
+//i = 0 -> j = 3 -> space
+//i = 0 -> j = 4 -> #
+
+//i = 1 -> j = 1 -> space
+//i = 1 -> j = 2 -> space
+// i = 1 -> j = 3 -> #
+// i = 1 -> j = 4 -> #
+
+//i = 2 -> j = 1 -> space
+//i = 2 -> j = 2 -> #
+// i = 2 -> j = 3 ->#
+// i = 2 ->j = 4 ->  #
+
+//i = 3 -> j = 1 -> #
+//i = 3 -> j = 2 -> #
+//i = 3 -> j = 3->  #
+//i = 3 -> j = 4 ->#
+
+function staircase(n) {
+  // for loop < n
+  for (let i = 0; i++ < n; ) {
+    let line = "";
+   // i = 0; space = n ;
+    // i = 1 ; spa
+    let spaces = n - i;
+
+    for (let j = spaces; j--; ) {
+      // j = n -> line = " "
+      // j = n -1 -> line = " " " "
+      line += " ";
+    }
+
+    for (let j = i; j--; ) {
+      //j = 0 -> line = "#"
+      //j = 1 -> line = "#"
+      line += "#";
+    }
+    console.log(line);
+  }
+}
+
+staircase(6);

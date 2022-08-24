@@ -198,3 +198,27 @@ function staircase(n) {
 }
 
 staircase(6);
+
+// Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly 4 of 5 integers
+//arr=[1,3,5,7,9] ->min sum = 1+ 3+ 5+ 7 = 16
+// max sum = 3 + 5 + 7 + 9 = 24
+// 5 intergers. at first sort it from smaller to greater. and then do loop 1 from = 0 -> minSum
+//loop 2 from1 -> maxSUm
+
+function miniMaxSum(arr) { 
+  let minSum = 0;
+  let maxSum = 0;
+  const newArr = arr.sort()
+  //minSum
+  for (let i = 0; i < newArr.length - 1; i++) {
+    minSum += arr[i];
+ 
+  }
+  for (let i = 1; i < newArr.length; i++) {
+    maxSum += arr[i];
+  }
+ console.log(minSum, maxSum)
+
+}
+
+miniMaxSum([5,3,4,1,2])

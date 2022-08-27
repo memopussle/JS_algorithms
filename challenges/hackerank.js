@@ -221,4 +221,36 @@ function miniMaxSum(arr) {
 
 }
 
-miniMaxSum([5,3,4,1,2])
+miniMaxSum([5, 3, 4, 1, 2])
+
+//Birthday cake handles
+//You are in charge of the cake for a child's birthday. You have decided the cake will have one candle for each year of their total age.
+ //They will only be able to blow out the tallest of the candles.Count how many candles are tallest.
+ // ex: [4,4,1,3]
+ // ->2 candles have 4 units (highest)
+
+
+function birthdayCakeCandles(candles) { 
+  // filter array. Loop through each candle. find the max inside candles array which are equal to candle
+  const highestUnits = candles.filter((candle) => Math.max(...candles) === candle)
+return highestUnits.length
+}
+
+birthdayCakeCandles([1, 2, 3, 3])
+ 
+//solution 2: find the max index of the array first
+// create another array for counting
+//loop through the array, if the index === the max -> new array for counting ++
+
+function birthdayCakeCandles2(candles2) { 
+  const maxUnits = Math.max(...candles2) //spread operator for array
+  let maxCount = 0;
+  for (let i = 0; i < candles2.length; i++) {
+    if (candles2[i] === maxUnits) {
+      maxCount++;
+    }
+  }
+  return maxCount;
+}
+
+console.log(birthdayCakeCandles2([1, 2, 3, 3]));

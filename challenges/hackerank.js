@@ -178,7 +178,7 @@ function staircase(n) {
   // for loop < n
   for (let i = 0; i++ < n; ) {
     let line = "";
-   // i = 0; space = n ;
+    // i = 0; space = n ;
     // i = 1 ; spa
     let spaces = n - i;
 
@@ -205,45 +205,44 @@ staircase(6);
 // 5 intergers. at first sort it from smaller to greater. and then do loop 1 from = 0 -> minSum
 //loop 2 from1 -> maxSUm
 
-function miniMaxSum(arr) { 
+function miniMaxSum(arr) {
   let minSum = 0;
   let maxSum = 0;
-  const newArr = arr.sort()
+  const newArr = arr.sort();
   //minSum
   for (let i = 0; i < newArr.length - 1; i++) {
     minSum += arr[i];
- 
   }
   for (let i = 1; i < newArr.length; i++) {
     maxSum += arr[i];
   }
- console.log(minSum, maxSum)
-
+  console.log(minSum, maxSum);
 }
 
-miniMaxSum([5, 3, 4, 1, 2])
+miniMaxSum([5, 3, 4, 1, 2]);
 
 //Birthday cake handles
 //You are in charge of the cake for a child's birthday. You have decided the cake will have one candle for each year of their total age.
- //They will only be able to blow out the tallest of the candles.Count how many candles are tallest.
- // ex: [4,4,1,3]
- // ->2 candles have 4 units (highest)
+//They will only be able to blow out the tallest of the candles.Count how many candles are tallest.
+// ex: [4,4,1,3]
+// ->2 candles have 4 units (highest)
 
-
-function birthdayCakeCandles(candles) { 
+function birthdayCakeCandles(candles) {
   // filter array. Loop through each candle. find the max inside candles array which are equal to candle
-  const highestUnits = candles.filter((candle) => Math.max(...candles) === candle)
-return highestUnits.length
+  const highestUnits = candles.filter(
+    (candle) => Math.max(...candles) === candle
+  );
+  return highestUnits.length;
 }
 
-birthdayCakeCandles([1, 2, 3, 3])
- 
+birthdayCakeCandles([1, 2, 3, 3]);
+
 //solution 2: find the max index of the array first
 // create another array for counting
 //loop through the array, if the index === the max -> new array for counting ++
 
-function birthdayCakeCandles2(candles2) { 
-  const maxUnits = Math.max(...candles2) //spread operator for array
+function birthdayCakeCandles2(candles2) {
+  const maxUnits = Math.max(...candles2); //spread operator for array
   let maxCount = 0;
   for (let i = 0; i < candles2.length; i++) {
     if (candles2[i] === maxUnits) {
@@ -254,3 +253,39 @@ function birthdayCakeCandles2(candles2) {
 }
 
 console.log(birthdayCakeCandles2([1, 2, 3, 3]));
+
+// Time conversion: 12-hour AM/PM format, convert it tomilitary (24-hour) time.
+
+//Note: - 12:00:00AM on a 12-hour clock is 00:00:00 on a 24-hour clock.
+//- 12:00:00PM on a 12-hour clock is 12:00:00 on a 24-hour clock.
+//example 07:05:45am -> 19:05:45
+
+function timeConversion(s) {
+  // Write your code here
+
+  //get rid of postfix AM PM and split the hour
+  const arr = s.slice(0, 8).split(":");
+  // ['12', '00', '00']
+  //AM case -> 12AM -> 00
+
+  //if string includes AM
+  if (s.includes("AM")) {
+    if (arr[0] === "12") {
+      arr[0] = "00";
+    }
+  }
+
+  //ifstring includes PM
+  if (s.includes("PM")) {
+    //PM case
+    if (arr[0] === "12") {
+      arr[0] = "12";
+    } else {
+      arr[0] = Number(arr[0]) + 12; //if arr[0] = 1pm -> 13
+    }
+  }
+ 
+  console.log(arr.join(":"));
+  return arr.join(":");
+}
+timeConversion("01:00:00PM");

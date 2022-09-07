@@ -284,8 +284,28 @@ function timeConversion(s) {
       arr[0] = Number(arr[0]) + 12; //if arr[0] = 1pm -> 13
     }
   }
- 
+
   console.log(arr.join(":"));
   return arr.join(":");
 }
 timeConversion("01:00:00PM");
+
+//You are choreographing a circus show with various animals. you are given two kangaroos on a number line
+// ready to jump in the positive direction(i.e, toward positive infinity)
+//The 1st kangaroo starts at location x1 and moves at a rate of v1 meters per jump
+//the second kangaroo starts at location x2 and moves at a rate of v2 meters per jump
+//ex: x=3, (x1 + v1 = 2 + 1,x2 +v2 = 1 + 2).both meet after 1 jump-> YES
+
+// there must be a k jumps: x1 + k*v1 = x2 + k*v2
+// x1 - x2 = k*(v2-v1)
+// math.abs(x1 - x2) / math.abs(v2 - v1) === 0
+// x1 -x2 = 0 -> v2 - v1 = 0 -> v2 === v1
+//Math.sign() return 1 if its a positive, -1 if negative, 0 = 0
+
+function kangaroo(x1, v1, x2, v2) {
+  return Math.sign(x1 - x2) === Math.sign(v2 - v1) &&
+    (v1 === v2 || (x1 - x2) % Math.abs(v2 - v1) === 0)
+    ? "YES"
+    : "NO";
+}
+console.log(kangaroo(0, 3, 4, 2));

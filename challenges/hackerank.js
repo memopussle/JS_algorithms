@@ -309,3 +309,35 @@ function kangaroo(x1, v1, x2, v2) {
     : "NO";
 }
 console.log(kangaroo(0, 3, 4, 2));
+
+
+
+//There will be two arrays of integers. Determine all integers that satisfy the following two conditions:
+// 1. The elements of the first array are all factors of the integer being considered
+// 2. The integer being considered is a factor of all elements of the second array
+
+//example: a= [2,6]
+//b= [24,36]
+// 2 numbers between arrays:6 & 12.
+// 6 % 2 = 0, 6 % 6 = 0, 24 % 6 =0 & 36 % 6 = 0 for the first value
+// 12 % 2 = 0,12 % 6 = 0 & 24 % 12 = 0, 36 % 12 = 0. return 2
+
+// a: 2,3,4,5,6,7.... 100 -> a,b % int == 0 -> int=[6,12] . int: value
+// 6,7,8,9,9...100
+
+//b: 24,25,26,27.... 100
+//36,37,38,39 .... 100
+
+function getTotalX(a, b) { 
+  let validCount = 0;
+  for (let x = 1; x <= 100; x++) {
+    if (a.every(int=> x % int == 0)) {
+      if (b.every(int => int % x == 0)) {
+        validCount++;
+      }
+    }
+  }
+  return validCount++;
+}
+
+// every value in a divide to that x = 0 and check every value in b % x = 0 -> same value -> push that values to validCount
